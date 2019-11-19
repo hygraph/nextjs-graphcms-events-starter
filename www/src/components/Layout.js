@@ -2,8 +2,19 @@ import React from 'react';
 
 import '../main.css';
 
+import Header from './Header';
+import Footer from './Footer';
+
 function Layout({ children }) {
-  return <div className="container mx-auto px-6">{children}</div>;
+  return (
+    <React.Fragment>
+      <Header />
+
+      <main>{children}</main>
+
+      <Footer />
+    </React.Fragment>
+  );
 }
 
 export default Layout;

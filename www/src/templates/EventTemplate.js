@@ -1,15 +1,19 @@
 import React from 'react';
 import Image from 'graphcms-image';
 
+import Schedule from '../components/Schedule';
+import Venue from '../components/Venue';
+// import Sponsors from '../components/Sponsors';
+
 function PageTemplate({ pageContext: { event, tracks, sponsors, venue } }) {
   return (
-    <div>
-      <h3>
-        {/* {new Intl.DateTimeFormat('en-GB', {
-          hour: 'numeric',
-          minute: 'numeric',
-        }).format(new Date(event.starts))} */}
-      </h3>
+    <React.Fragment>
+      <Schedule tracks={tracks} />
+      <Venue {...venue} />
+
+      <hr />
+
+      <p>Dumping ground</p>
 
       <h3>Tracks</h3>
       <div>
@@ -66,7 +70,7 @@ function PageTemplate({ pageContext: { event, tracks, sponsors, venue } }) {
 
       <h2>Venue</h2>
       <pre>{JSON.stringify(venue, null, 2)}</pre>
-    </div>
+    </React.Fragment>
   );
 }
 
