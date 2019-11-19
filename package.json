@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "www",
+    "api"
+  ],
+  "scripts": {
+    "format": "prettier --write '{**/*/*,*}.{js,jsx,md}' '!www/{.cache,public}/**/*.{js,jsx,md}'"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
+  },
+  "dependencies": {
+    "dotenv": "8.2.0"
+  }
+}

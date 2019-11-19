@@ -1,0 +1,39 @@
+{
+  "name": "graphcms-events",
+  "scope": "graphcms",
+  "version": 2,
+  "build": {
+    "env": {
+      "GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
+      "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
+    }
+  },
+  "builds": [
+    {
+      "src": "www/package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    },
+    {
+      "src": "api/handlers/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "env": {
+    "GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
+    "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
+  },
+  "routes": [
+    {
+      "src": "/api/submit-cfp",
+      "dest": "/api/handlers/submit-cfp.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/www/$1"
+    }
+  ]
+}
