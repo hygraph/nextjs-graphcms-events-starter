@@ -5,9 +5,9 @@ module.exports = {
       options: {
         typeName: 'GraphCMS',
         fieldName: 'cms',
-        url: process.env.GRAPHCMS_ENDPOINT,
+        url: process.env.GATSBY_GRAPHCMS_ENDPOINT,
         headers: {
-          Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+          Authorization: `Bearer ${process.env.GATSBY_GRAPHCMS_TOKEN}`,
         },
       },
     },

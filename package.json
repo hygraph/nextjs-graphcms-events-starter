@@ -1,16 +1,26 @@
 {
+  "name": "graphcms-events-starter",
   "private": true,
-  "workspaces": [
-    "www",
-    "api"
-  ],
+  "version": "0.0.0",
   "scripts": {
-    "format": "prettier --write '{**/*/*,*}.{js,jsx,md}' '!www/{.cache,public}/**/*.{js,jsx,md}'"
-  },
-  "devDependencies": {
-    "prettier": "1.18.2"
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "dev": "gatsby develop -p $PORT"
   },
   "dependencies": {
-    "dotenv": "8.2.0"
+    "dotenv": "8.2.0",
+    "gatsby": "2.16.1",
+    "gatsby-plugin-postcss": "2.1.15",
+    "gatsby-plugin-purgecss": "4.0.1",
+    "gatsby-source-graphql": "2.1.20",
+    "graphcms-image": "1.1.0-beta4",
+    "graphql-request": "1.8.2",
+    "postmark": "2.3.4",
+    "react": "16.10.2",
+    "react-dom": "16.10.2"
+  },
+  "devDependencies": {
+    "postcss-preset-env": "6.7.0",
+    "tailwindcss": "1.1.3"
   }
 }
