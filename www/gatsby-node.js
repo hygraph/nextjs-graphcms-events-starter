@@ -55,6 +55,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       id
       title
       slug
+      start
+      description {
+        html
+      }
       tracks {
         ...trackInfo
       }
@@ -80,8 +84,24 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   `);
 
   if (events) {
-    events.forEach(({ tracks, sponsors, venue, ...event }) =>
-      createPage({
+
+    const pastEvents = []
+    const futureEvents = []
+
+    const now = new Date().toISOString();
+
+    const sortByStart = (a,b) => {
+      if (a.start < b.start) return -1
+      if (a.start > b.start) return 1
+      if (a.start === b.start) return 0
+    }
+    
+    events.forEach(({ tracks, sponsors, venue, ...event }) => {
+      
+      if (event.start < now) pastEvents.push(event)
+      if (event.start > now) futureEvents.push(event)
+
+      return createPage({
         path: `/${event.slug}`,
         component: require.resolve('./src/templates/EventTemplate.js'),
         context: {
@@ -91,6 +111,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           event,
         },
       })
+      }
     );
+
+    createPage({
+      path: '/',
+      component: require.resolve('./src/templates/HomeTemplate.js'),
+      context: {
+        pastEvents: pastEvents ? pastEvents.sort(sortByStart) : [],
+        futureEvents: futureEvents ? futureEvents.sort(sortByStart) : [],
+      }
+    })
   }
 };

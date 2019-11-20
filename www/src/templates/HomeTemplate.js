@@ -1,39 +1,12 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 
 const Wrapper = props => (
   <section className="max-w-4xl mx-auto px-6" {...props} />
 );
 
-const Home = () => {
-  const {
-    cms: { events },
-  } = useStaticQuery(
-    graphql`
-      query EventsQuery {
-        cms {
-          events(orderBy: start_ASC) {
-            start
-            title
-            slug
-            description {
-              html
-            }
-            venue {
-              name
-              location {
-                latitude
-                longitude
-              }
-            }
-          }
-        }
-      }
-    `
-  );
-  const now = new Date().toISOString();
-  const next = events.find(event => event.start > now);
-
+const HomeTemplate = ({ pageContext: { futureEvents, pastEvents } }) => {
+  const next = futureEvents[0];
   return (
     <React.Fragment>
       <Wrapper>
@@ -66,8 +39,9 @@ const Home = () => {
           </article>
         </Link>
       </Wrapper>
+      <Wrapper></Wrapper>
     </React.Fragment>
   );
 };
 
-export default Home;
+export default HomeTemplate;
