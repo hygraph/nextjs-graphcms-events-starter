@@ -41,18 +41,28 @@
   },
   "routes": [
     {
-      "src": "/api/submit-cfp",
-      "dest": "/api/handlers/submit-cfp.js",
+      "src": "/api/submit",
+      "dest": "/api/handlers/submit.js",
       "methods": ["POST"]
     },
     {
-      "src": "/api/send-cfp-confirmation-email",
-      "dest": "/api/handlers/send-cfp-confirmation-email.js",
+      "src": "/api/send-confirmation-email",
+      "dest": "/api/handlers/send-confirmation-email.js",
       "methods": ["POST"]
     },
     {
-      "src": "/api/send-cfp-updated-email",
-      "dest": "/api/handlers/send-cfp-updated-email.js",
+      "src": "/api/send-updated-email",
+      "dest": "/api/handlers/send-updated-email.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/accept/(?<id>[^/]+)",
+      "dest": "/api/handlers/accept.js?id=$id",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/reject/(?<id>[^/]+)",
+      "dest": "/api/handlers/reject.js?id=$id",
       "methods": ["POST"]
     },
     {
