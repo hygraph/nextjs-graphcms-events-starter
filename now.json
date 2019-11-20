@@ -1,35 +1,13 @@
 {
   "name": "graphcms-events",
   "scope": "graphcms",
-  "version": 2,
   "build": {
     "env": {
-      "GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
-      "GRAPHCMS_MUTATION_TOKEN": "@demo-graphcms-events-graphcms-mutation-token",
-      "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint",
-      "POSTMARK_API_KEY": "@demo-graphcms-events-postmark-api-key",
-      "POSTMARK_FROM_ADDRESS": "@demo-graphcms-events-postmark-from-address",
-      "POSTMARK_NEW_CFP_TEMPLATE_ID": "@demo-graphcms-events-postmark-new-cfp-template-id",
-      "POSTMARK_CONFIRMED_TEMPLATE_ID": "@demo-graphcms-events-postmark-confirmed-template-id",
-      "POSTMARK_ACCEPTED_TEMPLATE_ID": "@demo-graphcms-events-postmark-accepted-template-id",
-      "POSTMARK_REJECTED_TEMPLATE_ID": "@demo-graphcms-events-postmark-rejected-template-id"
+      "GATSBY_GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
+      "GATSBY_GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
     }
   },
-  "builds": [
-    {
-      "src": "www/package.json",
-      "use": "@now/static-build",
-      "config": {
-        "distDir": "public"
-      }
-    },
-    {
-      "src": "api/handlers/*.js",
-      "use": "@now/node"
-    }
-  ],
   "env": {
-    "GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
     "GRAPHCMS_MUTATION_TOKEN": "@demo-graphcms-events-graphcms-mutation-token",
     "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint",
     "POSTMARK_API_KEY": "@demo-graphcms-events-postmark-api-key",
@@ -38,36 +16,5 @@
     "POSTMARK_CONFIRMED_TEMPLATE_ID": "@demo-graphcms-events-postmark-confirmed-template-id",
     "POSTMARK_ACCEPTED_TEMPLATE_ID": "@demo-graphcms-events-postmark-accepted-template-id",
     "POSTMARK_REJECTED_TEMPLATE_ID": "@demo-graphcms-events-postmark-rejected-template-id"
-  },
-  "routes": [
-    {
-      "src": "/api/submit",
-      "dest": "/api/handlers/submit.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/api/send-confirmation-email",
-      "dest": "/api/handlers/send-confirmation-email.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/api/send-updated-email",
-      "dest": "/api/handlers/send-updated-email.js",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/api/accept/(?<id>[^/]+)",
-      "dest": "/api/handlers/accept.js?id=$id",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/api/reject/(?<id>[^/]+)",
-      "dest": "/api/handlers/reject.js?id=$id",
-      "methods": ["POST"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/www/$1"
-    }
-  ]
+  }
 }

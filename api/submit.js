@@ -1,4 +1,4 @@
-const { graphQLClient } = require('../client');
+const { graphQLClient } = require('./_client');
 
 const mutation = `
   mutation submitCFP(

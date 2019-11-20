@@ -1,9 +1,9 @@
-const { graphQLClient } = require('../client');
+const { graphQLClient } = require('../_client');
 
 const mutation = `
   mutation acceptCFP($id: ID!) {
     updateTalk(data: {
-      cfpStatus: REJECTED
+      cfpStatus: ACCEPTED
     }, where: {
       id: $id
     }) {
