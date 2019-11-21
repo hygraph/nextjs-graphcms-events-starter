@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 function Venue({ name, location }) {
-  const showMap = location && location.lat && location.lng;
-
   return (
     <div className="pt-12 lg:pt-20 relative">
       <div className="container mx-auto px-6">
