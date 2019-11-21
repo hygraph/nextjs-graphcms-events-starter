@@ -98,15 +98,26 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       if (a.start === b.start) return 0
     }
     
+
     events.forEach(({ tracks, sponsors, venue, ...event }) => {
       
       if (new Date(event.start) < now) pastEvents.push(event)
       if (new Date(event.start) > now) futureEvents.push(event)
 
+      const speakers = tracks.reduce((collector, currentTrack) => {
+        return [
+          ...collector,
+          ...currentTrack.timeSlots
+          .map(timeSlot => timeSlot.talk
+          ? timeSlot.talk.speaker
+          : null)].filter(Boolean)
+      },[])
+
       return createPage({
         path: `/${event.slug}`,
         component: require.resolve('./src/templates/EventTemplate.js'),
         context: {
+          speakers,
           tracks,
           sponsors,
           venue,
