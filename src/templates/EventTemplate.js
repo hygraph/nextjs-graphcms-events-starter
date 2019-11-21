@@ -1,21 +1,21 @@
 import React from 'react';
 import Image from 'graphcms-image';
 
-import Schedule from '../components/Schedule';
+import Speakers from '../components/Speakers';
 import Venue from '../components/Venue';
-// import Sponsors from '../components/Sponsors';
+import Schedule from '../components/Schedule';
+import Sponsors from '../components/Sponsors';
 
-function PageTemplate({ pageContext: { event, tracks, sponsors, venue } }) {
+function PageTemplate({
+  pageContext: { event, speakers, venue, sponsors, tracks },
+}) {
   return (
     <React.Fragment>
+      <Speakers speakers={speakers} />
       <Schedule tracks={tracks} />
       <Venue {...venue} />
+      <Sponsors sponsors={sponsors} />
 
-      <hr />
-
-      <p>Dumping ground</p>
-
-      <h3>Tracks</h3>
       <div>
         {tracks.map(({ timeSlots, mc, ...track }) => (
           <div key={track.id}>

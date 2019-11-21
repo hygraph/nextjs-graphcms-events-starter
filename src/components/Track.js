@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'graphcms-image';
 
 import Slot from './Slot';
 
