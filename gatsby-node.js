@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     const pastEvents = []
     const futureEvents = []
 
-    const now = new Date().toISOString();
+    const now = new Date()
 
     const sortByStart = (a,b) => {
       if (a.start < b.start) return -1
@@ -100,8 +100,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     
     events.forEach(({ tracks, sponsors, venue, ...event }) => {
       
-      if (event.start < now) pastEvents.push(event)
-      if (event.start > now) futureEvents.push(event)
+      if (new Date(event.start) < now) pastEvents.push(event)
+      if (new Date(event.start) > now) futureEvents.push(event)
 
       return createPage({
         path: `/${event.slug}`,
