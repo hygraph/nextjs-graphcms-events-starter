@@ -6,6 +6,14 @@ const Wrapper = props => (
 );
 
 const HomeTemplate = ({ pageContext: { futureEvents, pastEvents } }) => {
+  futureEvents.map(event => {
+    console.log(event.slug, `${event.start} < ${new Date().toISOString()} = ${event.start < new Date().toISOString()}`)
+  })
+
+  pastEvents.map(event => {
+    console.log(event.slug, `${event.start} < ${new Date().toISOString()} = ${event.start < new Date().toISOString()}`)
+  })
+  console.log(pastEvents)
   const next = futureEvents[0];
   return (
     <React.Fragment>
@@ -38,6 +46,12 @@ const HomeTemplate = ({ pageContext: { futureEvents, pastEvents } }) => {
             </section>
           </article>
         </Link>
+      </Wrapper>
+      <Wrapper>
+      <p className="text-2xl mb-4">Upcoming Events</p>
+      <section className="flex flex-wrap">
+      {futureEvents.map(event => event.title)}
+      </section>
       </Wrapper>
       <Wrapper></Wrapper>
     </React.Fragment>
