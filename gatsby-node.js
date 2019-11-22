@@ -100,8 +100,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     
     events.forEach(({ tracks, sponsors, venue, ...event }) => {
       
-      if (event.start < now) pastEvents.push(event)
-      if (event.start > now) futureEvents.push(event)
+      if (event.start < now) pastEvents.push({tracks, sponsors, venue, ...event})
+      if (event.start > now) futureEvents.push({tracks, sponsors, venue, ...event})
 
       return createPage({
         path: `/${event.slug}`,
