@@ -3,7 +3,7 @@ require('dotenv').config();
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const {
     data: {
-      cms: { events },
+      cms: { events, globalSponsors },
     },
   } = await graphql(`
     fragment assetInfo on GraphCMS_Asset {
@@ -78,6 +78,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
     query {
       cms {
+        globalSponsors: sponsors(where: {
+          type: GLOBAL
+        }) {
+          name
+          url
+        }
         events {
           ...EventInfo
         }
@@ -90,7 +96,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     const pastEvents = []
     const futureEvents = []
 
-    const now = new Date().toISOString();
+    const now = new Date()
 
     const sortByStart = (a,b) => {
       if (a.start < b.start) return -1
@@ -98,15 +104,27 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       if (a.start === b.start) return 0
     }
     
-    events.forEach(({ tracks, sponsors, venue, ...event }) => {
+
+    events.forEach(payload => {
+      const { tracks, sponsors, venue, ...event } = payload
       
-      if (event.start < now) pastEvents.push({tracks, sponsors, venue, ...event})
-      if (event.start > now) futureEvents.push({tracks, sponsors, venue, ...event})
+      if (new Date(event.start) < now) pastEvents.push(payload)
+      if (new Date(event.start) > now) futureEvents.push(payload)
+
+      const speakers = tracks.reduce((collector, currentTrack) => {
+        return [
+          ...collector,
+          ...currentTrack.timeSlots
+          .map(timeSlot => timeSlot.talk
+          ? timeSlot.talk.speaker
+          : null)].filter(Boolean)
+      },[])
 
       return createPage({
         path: `/${event.slug}`,
         component: require.resolve('./src/templates/EventTemplate.js'),
         context: {
+          speakers,
           tracks,
           sponsors,
           venue,
@@ -122,6 +140,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         pastEvents: pastEvents ? pastEvents.sort(sortByStart) : [],
         futureEvents: futureEvents ? futureEvents.sort(sortByStart) : [],
+        globalSponsors
       }
     })
   }
