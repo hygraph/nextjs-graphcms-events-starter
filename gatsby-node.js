@@ -3,7 +3,7 @@ require('dotenv').config();
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const {
     data: {
-      cms: { events },
+      cms: { events, globalSponsors },
     },
   } = await graphql(`
     fragment assetInfo on GraphCMS_Asset {
@@ -78,6 +78,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
     query {
       cms {
+        globalSponsors: sponsors(where: {
+          type: GLOBAL
+        }) {
+          name
+          url
+        }
         events {
           ...EventInfo
         }
@@ -99,10 +105,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
     
 
-    events.forEach(({ tracks, sponsors, venue, ...event }) => {
+    events.forEach(payload => {
+      const { tracks, sponsors, venue, ...event } = payload
       
-      if (new Date(event.start) < now) pastEvents.push(event)
-      if (new Date(event.start) > now) futureEvents.push(event)
+      if (new Date(event.start) < now) pastEvents.push(payload)
+      if (new Date(event.start) > now) futureEvents.push(payload)
 
       const speakers = tracks.reduce((collector, currentTrack) => {
         return [
@@ -133,6 +140,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         pastEvents: pastEvents ? pastEvents.sort(sortByStart) : [],
         futureEvents: futureEvents ? futureEvents.sort(sortByStart) : [],
+        globalSponsors
       }
     })
   }

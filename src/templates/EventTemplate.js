@@ -20,19 +20,17 @@ function PageTemplate({
         {tracks.map(({ timeSlots, mc, ...track }) => (
           <div key={track.id}>
             <h4>{track.title}</h4>
-            <p>
               MCs:{' '}
               {mc.map(m => (
                 <div>
-                  <Image
+                  {m.photo && <Image
                     image={m.photo}
                     maxWidth={100}
                     style={{ width: '50px' }}
-                  />{' '}
+                  />}{' '}
                   {m.name}
                 </div>
               ))}
-            </p>
 
             <hr />
 
