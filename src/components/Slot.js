@@ -22,11 +22,11 @@ function Slot({ id, start, end, talk }) {
 
       <div className="flex items-center">
         <div className="w-16 mr-6">
-          <Image
+          {talk.speaker.photo && <Image
             image={talk.speaker.photo}
             maxWidth={150}
             className="w-16 h-16 rounded-full"
-          />
+          />}
         </div>
 
         <div className="flex-grow">
