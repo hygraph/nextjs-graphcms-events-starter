@@ -6,7 +6,7 @@ function Venue({ name, location }) {
     <div className="pt-12 lg:pt-20 relative">
       <div className="container mx-auto px-6">
         <div className="mb-6 md:mb-12 lg:mb-20 md:flex md:items-center md:justify-between">
-          <h2 className="text-gray-800 text-4xl md:text-6xl font-bold">
+          <h2 className="text-purple-800 text-4xl md:text-6xl font-bold">
             Venue
           </h2>
 

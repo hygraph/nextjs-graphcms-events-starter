@@ -21,12 +21,11 @@ function Schedule({ tracks }) {
   }, {});
 
   return (
-    <div className="py-6 md:py-12">
-      <div className="max-w-4xl mx-auto px-6">
+    <div className="container mx-auto px-6 py-12 lg:py-20">
         <div className="mb-3 md:mb-6">
-          <h3 className="font-bold text-gray-800 text-xl md:text-3xl mb-6">
+        <h2 className="text-purple-800 text-4xl md:text-6xl font-bold">
             Schedule
-          </h3>
+          </h2>
           <p className="text-gray-800"><strong>Tracks</strong></p>
           <div className="flex flex-wrap">
           {tracks.map(({title}, i) => (
@@ -65,7 +64,6 @@ function Schedule({ tracks }) {
                 </div>
               )})}
         </section>
-      </div>
     </div>
   );
 }

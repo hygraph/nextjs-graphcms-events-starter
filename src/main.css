@@ -5,3 +5,8 @@
 html {
   @apply font-sans;
 }
+
+
+.body-copy p {
+  @apply text-white leading-relaxed max-w-2xl;
+}

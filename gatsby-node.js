@@ -10,6 +10,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       handle
       width
       height
+      url
     }
 
     fragment venueInfo on GraphCMS_Venue {
@@ -61,6 +62,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       title
       slug
       start
+      image {
+        ...assetInfo
+      }
       description {
         html
       }

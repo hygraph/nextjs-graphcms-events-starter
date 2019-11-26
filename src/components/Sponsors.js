@@ -7,7 +7,7 @@ function Sponsors({ sponsors }) {
   return (
     <div className="container mx-auto px-6 py-12 lg:py-20">
       <div className="mb-6 md:mb-12 lg:mb-20 flex items-center justify-between">
-        <h2 className="text-gray-800 text-4xl md:text-6xl font-bold">
+        <h2 className="text-purple-800 text-4xl md:text-6xl font-bold">
           Sponsors
         </h2>
 
