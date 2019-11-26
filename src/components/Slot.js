@@ -3,39 +3,49 @@ import Image from 'graphcms-image';
 
 // filter on __typename
 
-function Slot({ id, start, end, talk }) {
-  if (!talk) return null;
-
-  const formattedStart = new Intl.DateTimeFormat('en-GB', {
-    hour: 'numeric',
-    minute: 'numeric',
-  }).format(new Date(start));
-
+function Slot({ id, start, end, talk, sessionBreak }) {
   return (
-    <div
-      key={id}
-      className="py-3 md:py-6 flex flex-col md:flex-row items-center"
-    >
-      <div className="border-b border-gray-500 md:border-transparent md:w-1/4 py-3 md:py-0 mb-6 md:mb-0 md:mr-6 md:text-right">
-        {formattedStart}
-      </div>
+    <div key={id} className="py-3 md:py-6 px-6 flex flex-col md:flex-row ">
+      {talk ? (
+        <div className="flex items-center">
+          <div className="w-16 mr-6">
+            {talk.speaker.photo && (
+              <Image
+                image={talk.speaker.photo}
+                maxWidth={150}
+                className="w-16 h-16 rounded-full"
+              />
+            )}
+          </div>
 
-      <div className="flex items-center">
-        <div className="w-16 mr-6">
-          {talk.speaker.photo && <Image
-            image={talk.speaker.photo}
-            maxWidth={150}
-            className="w-16 h-16 rounded-full"
-          />}
+          <div className="flex-grow">
+            <p className="text-gray-800">
+              <strong>{talk.title}</strong>
+            </p>
+            <p className="text-gray-500">{talk.speaker.name}</p>
+          </div>
         </div>
+      ) : sessionBreak ? (
+        <div className="flex items-center">
+          <div className="w-16 mr-6">
+            <p>break</p>
+          </div>
 
-        <div className="flex-grow">
-          <p className="text-gray-800">
-            <strong>{talk.title}</strong>
-          </p>
-          <p className="text-gray-500">{talk.speaker.name}</p>
+          <div className="flex-grow">
+            <p className="text-gray-800">
+              <strong>{sessionBreak.title}</strong>
+            </p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex items-center">
+          <div className="flex-grow">
+            <p className="text-gray-800">
+              <strong>TBD</strong>
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

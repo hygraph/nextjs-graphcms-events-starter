@@ -50,6 +50,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         talk {
           ...talkInfo
         }
+        sessionBreak: break {
+          title
+        }
       }
     }
 
@@ -103,6 +106,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       if (a.start > b.start) return 1
       if (a.start === b.start) return 0
     }
+
+    const sortBySpeaker = (a,b) => {
+      if (a.name < b.name) return -1
+      if (a.name > b.name) return 1
+      if (a.name === b.name) return 0
+    }
     
 
     events.forEach(payload => {
@@ -117,7 +126,21 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           ...currentTrack.timeSlots
           .map(timeSlot => timeSlot.talk
           ? timeSlot.talk.speaker
-          : null)].filter(Boolean)
+          : null)]
+          .filter(Boolean)
+          .sort(sortBySpeaker)
+          .reduce((collector, current) => {
+            if (collector.length) {
+              if (current.name === collector[collector.length - 1].name) {
+                return collector
+              } else {
+                return [...collector, current]
+              }
+            } else {
+              return [...collector, current]
+            }
+            
+          },[])
       },[])
 
       return createPage({
