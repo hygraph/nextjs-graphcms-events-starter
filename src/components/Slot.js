@@ -19,7 +19,7 @@ function Slot({ id, start, end, talk, sessionBreak }) {
           </div>
 
           <div className="flex-grow">
-            <p className="text-gray-800">
+            <p className="text-gray-800 leading-tight">
               <strong>{talk.title}</strong>
             </p>
             <p className="text-gray-500">{talk.speaker.name}</p>
@@ -32,7 +32,7 @@ function Slot({ id, start, end, talk, sessionBreak }) {
           </div>
 
           <div className="flex-grow">
-            <p className="text-gray-800">
+            <p className="text-gray-800 leading-tight">
               <strong>{sessionBreak.title}</strong>
             </p>
           </div>

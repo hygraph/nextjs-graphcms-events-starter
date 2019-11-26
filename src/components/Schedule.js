@@ -43,7 +43,7 @@ function Schedule({ tracks }) {
                       ? `w-full`
                       : `w-full md:w-1/${concurrentTalks.length}`;
                 
-                return (<div className="flex flex-wrap w-full">
+                return (<div className="flex flex-wrap md:flex-no-wrap w-full">
 
                 <SlotTime date={timeSlot} />
                 

@@ -20,6 +20,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         lat: latitude
         lng: longitude
       }
+      street
+      city
+      postcode
+      country
     }
 
     fragment speakerInfo on GraphCMS_Speaker {
@@ -90,6 +94,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         }) {
           name
           url
+          logo {
+            ...assetInfo
+          }
         }
         events {
           ...EventInfo

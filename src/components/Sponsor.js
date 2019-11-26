@@ -1,13 +1,14 @@
 import React from 'react';
 import Image from 'graphcms-image';
 
-function Sponsor({ logo, ...props }) {
+function Sponsor({ name, url, logo, ...props }) {
   return (
     <div className="w-full md:w-1/3 px-6">
-      <div className="bg-gray-300 p-6 rounded-lg flex items-center justify-center w-full">
-        {/* <Image image={logo} maxWidth={150} className="h-20" /> */}
-        Sponsor Logo
+    <a href={url}>
+    <div>
+        {logo && <Image alt={name} image={logo} maxWidth={150} className="object-contain" />}
       </div>
+      </a>  
     </div>
   );
 }
