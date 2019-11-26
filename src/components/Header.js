@@ -1,11 +1,14 @@
 import React from 'react';
+import {Link} from 'gatsby'
+
+import Logo from './Logo'
 
 function Header() {
   return (
-    <div className="bg-gray-300 py-3">
+    <div className="py-3 z-10 absolute w-full">
       <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
-        <span>Logo</span>
-        <span>Back to all events link</span>
+        <Logo />
+        <Link to="/"><strong className="font-bold text-purple-200">&larr; Back to all events link</strong></Link>
       </div>
     </div>
   );

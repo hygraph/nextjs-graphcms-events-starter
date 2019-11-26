@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-function Venue({ name, location }) {
+function Venue({ name, location, city, street, country, postcode }) {
   return (
     <div className="pt-12 lg:pt-20 relative">
       <div className="container mx-auto px-6">
-        <div className="mb-6 md:mb-12 lg:mb-20 md:flex md:items-center md:justify-between">
-          <h2 className="text-gray-800 text-4xl md:text-6xl font-bold">
+        <div className="mb-6 md:mb-12 lg:mb-20">
+          <h2 className="text-purple-800 text-4xl md:text-6xl font-bold mb-6">
             Venue
           </h2>
-
-          <div className="md:text-right">
+          <div className="">
             <p className="text-gray-800 mb-3">
-              {name}, address line 1, city, zip, country
+              <strong>{name}</strong><br/>
+              {street}<br/>
+              {postcode} {city},<br/>
+              {country}
             </p>
 
             <Link
@@ -37,7 +39,8 @@ function Venue({ name, location }) {
         style={{
           backgroundImage:
             'url(https://images.unsplash.com/photo-1526043446186-2ff4028f978b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)',
-          height: '300px',
+          height: '450px',
+          clipPath: "polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%)"
         }}
       ></div>
     </div>

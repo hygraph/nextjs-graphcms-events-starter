@@ -9,65 +9,23 @@ import Sponsors from '../components/Sponsors';
 function PageTemplate({
   pageContext: { event, speakers, venue, sponsors, tracks },
 }) {
+  console.log(event)
   return (
     <React.Fragment>
+      <section className="bg-cover bg-purple-800 pb-32 pt-8"  style={{
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 66%, 0% 100%)"
+      }}>
+        <div className="container mx-auto px-6 py-12 lg:py-20">
+          <div className="w-2/3">
+            <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 leading-tight">{event.title}</h1>
+            <div className="body-copy" dangerouslySetInnerHTML={{__html: event.description.html}} />
+          </div>
+        </div>
+      </section>
       <Speakers speakers={speakers} />
       <Schedule tracks={tracks} />
       <Venue {...venue} />
       <Sponsors sponsors={sponsors} />
-
-      <div>
-        {tracks.map(({ timeSlots, mc, ...track }) => (
-          <div key={track.id}>
-            <h4>{track.title}</h4>
-              MCs:{' '}
-              {mc.map(m => (
-                <div>
-                  {m.photo && <Image
-                    image={m.photo}
-                    maxWidth={100}
-                    style={{ width: '50px' }}
-                  />}{' '}
-                  {m.name}
-                </div>
-              ))}
-
-            <hr />
-
-            {timeSlots.map(slot => {
-              if (!slot) return null;
-
-              return (
-                <li>
-                  {/* <Image
-                  image={slot.talk.speaker.photo}
-                  maxWidth={100}
-                  style={{ width: '50px' }}
-                /> */}
-                  {/* {slot.talk.title} by {slot.talk.speaker.name} @{' '} */}
-                  <pre>{JSON.stringify(slot, null, 2)}</pre>
-                  {/* {new Intl.DateTimeFormat('en-GB', {
-                  hour: 'numeric',
-                  minute: 'numeric',
-                }).format(new Date(slot.start))} */}
-                </li>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-
-      <h2>Event</h2>
-      <pre>{JSON.stringify(event, null, 2)}</pre>
-
-      <h2>Tracks</h2>
-      <pre>{JSON.stringify(tracks, null, 2)}</pre>
-
-      <h2>Sponsors</h2>
-      <pre>{JSON.stringify(sponsors, null, 2)}</pre>
-
-      <h2>Venue</h2>
-      <pre>{JSON.stringify(venue, null, 2)}</pre>
     </React.Fragment>
   );
 }
