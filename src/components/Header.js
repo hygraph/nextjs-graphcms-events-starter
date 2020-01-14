@@ -11,7 +11,7 @@ function Header() {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Logo />
         {router.pathname !== '/' && (
-          <Link href="">
+          <Link href="/">
             <a>
               <strong className="font-bold text-purple-200">
                 &larr; Back to all events link
