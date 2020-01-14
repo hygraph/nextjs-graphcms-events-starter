@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'graphcms-image';
 
-function Speaker({ name, headline, photo }) {
+function Speaker({ name, headline, photo }, index) {
   return (
-    <div className="w-full md:w-1/4 px-6 mb-6">
+    <div className="w-full md:w-1/4 px-6 mb-6" key={index}>
       <div className="rounded-lg bg-gray-900 w-full overflow-hidden">
         <Image image={photo} maxWidth={150} />
       </div>

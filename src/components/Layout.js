@@ -5,10 +5,10 @@ import '../main.css';
 import Header from './Header';
 import Footer from './Footer';
 
-function Layout({ location, children }) {
+function Layout({ children }) {
   return (
     <React.Fragment>
-      <Header location={location} />
+      <Header />
 
       <main>{children}</main>
 
