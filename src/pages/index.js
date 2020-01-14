@@ -96,41 +96,6 @@ Home.getInitialProps = async ctx => {
     country
   }
 
-  fragment speakerInfo on Speaker {
-    name
-    headline
-    photo {
-      ...assetInfo
-    }
-  }
-
-  fragment talkInfo on Talk {
-    id
-    title
-    speaker {
-      ...speakerInfo
-    }
-  }
-
-  fragment trackInfo on Track {
-    id
-    title
-    mc {
-      ...speakerInfo
-    }
-    timeSlots(orderBy: start_ASC) {
-      id
-      start
-      end
-      talk {
-        ...talkInfo
-      }
-      sessionBreak: break {
-        title
-      }
-    }
-  }
-
   fragment EventInfo on Event {
     id
     title
@@ -141,16 +106,6 @@ Home.getInitialProps = async ctx => {
     }
     description {
       html
-    }
-    tracks {
-      ...trackInfo
-    }
-    sponsors {
-      name
-      url
-      logo {
-        ...assetInfo
-      }
     }
     venue {
       ...venueInfo
@@ -196,40 +151,12 @@ Home.getInitialProps = async ctx => {
       if (a.start > b.start) return 1;
       if (a.start === b.start) return 0;
     };
-
-    const sortBySpeaker = (a, b) => {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      if (a.name === b.name) return 0;
-    };
-
+    
     events.forEach(payload => {
       const { tracks, sponsors, venue, ...event } = payload;
 
       if (new Date(event.start) < now) pastEvents.push(payload);
       if (new Date(event.start) > now) futureEvents.push(payload);
-
-      const speakers = tracks.reduce((collector, currentTrack) => {
-        return [
-          ...collector,
-          ...currentTrack.timeSlots.map(timeSlot =>
-            timeSlot.talk ? timeSlot.talk.speaker : null
-          ),
-        ]
-          .filter(Boolean)
-          .sort(sortBySpeaker)
-          .reduce((collector, current) => {
-            if (collector.length) {
-              if (current.name === collector[collector.length - 1].name) {
-                return collector;
-              } else {
-                return [...collector, current];
-              }
-            } else {
-              return [...collector, current];
-            }
-          }, []);
-      }, []);
     });
 
     pastEvents = pastEvents ? pastEvents.sort(sortByStart) : [];
