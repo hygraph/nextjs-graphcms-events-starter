@@ -10,7 +10,6 @@ const HomeTemplate = ({
   pageContext: { futureEvents, pastEvents, globalSponsors },
 }) => {
   const next = futureEvents[0];
-  console.log(globalSponsors);
   return (
     <React.Fragment>
     <section className="bg-cover bg-purple-800 pb-32 pt-8"  style={{
@@ -30,12 +29,6 @@ const HomeTemplate = ({
                 className="w-full md:w-1/2 text-white bg-gray-900 p-6"
                 dangerouslySetInnerHTML={{ __html: next.description.html }}
               />
-              <aside>
-                <section>
-                  <div>Stat</div>
-                  <div>Value</div>
-                </section>
-              </aside>
             </section>
           </article>
         </Link>
@@ -49,11 +42,13 @@ const HomeTemplate = ({
           {futureEvents &&
             futureEvents.slice(1).map((event, index) => {
               return (
-                <article className="w-full md:w-1/2 px-2 mb-10" key={index}>
-                  <img src="https://images.unsplash.com/photo-1526043446186-2ff4028f978b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
+                <Link className="w-full md:w-1/2 px-2 mb-10" to={event.slug}>
+                <article key={index}>
+                  <img src={event.image ? event.image.url : ""} />
                   <h1 className="font-bold text-gray-800 text-xl mb-2">{event.title}</h1>
                   <p>{event.venue ? event.venue.name : 'TBD'}</p>
                 </article>
+                </Link>
               );
             })}
         </section>
