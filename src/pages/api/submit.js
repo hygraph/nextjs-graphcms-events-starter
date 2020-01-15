@@ -34,6 +34,8 @@ module.exports = async (req, res) => {
   try {
     const variables = JSON.parse(req.body);
 
+    console.log(variables);
+
     res.status(201).send(await graphQLClient.request(mutation, variables));
   } catch ({ status = 500, message }) {
     res.status(status).json({ status, message });

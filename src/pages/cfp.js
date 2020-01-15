@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+
+import { FormSection, TextInput, TextArea } from '../components/FromElements';
 
 const Wrapper = props => (
   <section className="container mx-auto px-6 py-12 lg:py-20" {...props} />
 );
 
 const CFP = () => {
+  const [payload, updatePayload] = useState({});
+
+  function onClick() {
+    console.log(payload);
+  }
+
   return (
     <React.Fragment>
       <section
@@ -30,48 +38,66 @@ const CFP = () => {
       </section>
       <Wrapper>
         <div className="max-w-2xl">
-          <form class="px-8 pb-8 mb-4">
-            <div class="mb-4">
-              <label
-                class="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="first_last"
-              >
-                Name
-              </label>
-              <input
-                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="first_last"
-                type="text"
-                placeholder="First Last"
-              />
-            </div>
-            <div class="mb-6">
-              <label
-                class="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                E-Mail
-              </label>
-              <input
-                class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                placeholder="first_last@domain.com"
-              />
-            </div>
-            <div class="flex items-center justify-between">
+          <form className="px-8 pb-8 mb-4">
+            <TextInput
+              id="speakerName"
+              type="text"
+              placeholder="First Last"
+              label="First & Last Name"
+              errorMessage="This field is Required"
+              updatePayload={updatePayload}
+              required
+            />
+            <TextInput
+              id="speakerHeadline"
+              type="text"
+              placeholder="Developer @ BigCorp"
+              label="Your Role @ Company"
+              updatePayload={updatePayload}
+            />
+            <TextInput
+              id="speakerEmail"
+              type="email"
+              placeholder="first_last@domain.com"
+              label="E-Mail"
+              errorMessage="This field is Required"
+              updatePayload={updatePayload}
+              required
+            />
+            <TextInput
+              id="talkTitle"
+              type="text"
+              placeholder="My Awesome Talk Title"
+              label="Talk Title"
+              errorMessage="This field is Required"
+              updatePayload={updatePayload}
+              required
+            />
+            <TextArea
+              id="talkAbstract"
+              type="text"
+              placeholder="My talk abstract…"
+              label="Your talk abstract"
+              errorMessage="This field is Required"
+              updatePayload={updatePayload}
+              required
+            />
+            <TextArea
+              id="speakerNotes"
+              type="text"
+              placeholder="…"
+              label="Anything else you'd like to tell us?"
+              updatePayload={updatePayload}
+            />
+
+            <div className="flex items-center justify-between">
               <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
+                onClick={() => onClick()}
               >
-                Sign In
+                Submit
               </button>
-              <a
-                class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                href="#"
-              >
-                Forgot Password?
-              </a>
             </div>
           </form>
         </div>
@@ -81,12 +107,3 @@ const CFP = () => {
 };
 
 export default CFP;
-
-/*
-$talkTitle: String!,
-    $talkAbstract: RichTextAST,
-    $speakerName: String!,
-    $speakerHeadline: String!,
-    $speakerEmail: String!,
-    $speakerNotes: String
-*/
