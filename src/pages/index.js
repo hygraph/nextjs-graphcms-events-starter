@@ -75,6 +75,7 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
 };
 
 Home.getInitialProps = async ctx => {
+  console.log(ctx);
   const query = `
   fragment assetInfo on Asset {
     handle
@@ -128,13 +129,7 @@ Home.getInitialProps = async ctx => {
   }
 `;
 
-  const graphQLClient = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
-    credentials: 'include',
-    mode: 'cors',
-    headers: {
-      Authorization: `Bearer ${process.env.GATSBY_GRAPHCMS_TOKEN}`,
-    },
-  });
+  const graphQLClient = new GraphQLClient('http://localhost:3000/api/graphql');
 
   const request = await graphQLClient.request(query);
 
@@ -151,7 +146,7 @@ Home.getInitialProps = async ctx => {
       if (a.start > b.start) return 1;
       if (a.start === b.start) return 0;
     };
-    
+
     events.forEach(payload => {
       const { tracks, sponsors, venue, ...event } = payload;
 

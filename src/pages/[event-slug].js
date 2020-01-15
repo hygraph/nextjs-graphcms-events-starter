@@ -128,16 +128,9 @@ EventPage.getInitialProps = async ctx => {
     }
   `;
 
-  const graphQLClient = new GraphQLClient(process.env.GRAPHCMS_ENDPOINT, {
-    credentials: 'include',
-    mode: 'cors',
-    headers: {
-      Authorization: `Bearer ${process.env.GATSBY_GRAPHCMS_TOKEN}`,
-    },
-  });
+  const graphQLClient = new GraphQLClient('http://localhost:3000/api/graphql');
 
-  const request = await graphQLClient.request(query);
-  const { event } = request;
+  const { event } = await graphQLClient.request(query);
 
   if (event) {
     const { tracks, sponsors, venue, ...rest } = event;
