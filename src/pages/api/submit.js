@@ -1,43 +1,48 @@
 const { graphQLClient } = require('./_client');
 
 const mutation = `
-  mutation submitCFP(
-    $talkTitle: String!,
-    $talkAbstract: RichTextAST,
-    $speakerName: String!,
-    $speakerHeadline: String!,
-    $speakerEmail: String!,
-    $speakerNotes: String
-  ) {
-    createTalk(data: {
-      title: $talkTitle,
-      abstract: $talkAbstract,
-      notesFromSpeaker: $speakerNotes,
-      speaker: {
-        create: {
-          name: $speakerName,
-          headline: $speakerHeadline,
-          email: $speakerEmail
-        }
-      }
-    }) {
-      id
-      speaker {
-        name
-        email
+mutation submitCFP(
+  $talkTitle: String!,
+  $talkAbstract: RichTextAST,
+  $speakerName: String!,
+  $speakerHeadline: String!,
+  $speakerEmail: String!,
+  $speakerNotes: String
+) {
+  upsertSpeaker(where:{
+    email: $speakerEmail
+  }, create: {
+        name: $speakerName,
+        headline: $speakerHeadline,
+        email: $speakerEmail
+  }, update: {
+    headline: $speakerHeadline,
+  }) {
+    email
+  }
+  createTalk(data: {
+    title: $talkTitle,
+    abstract: $talkAbstract,
+    notesFromSpeaker: $speakerNotes,
+    speaker: {
+      connect: {
+        email: $speakerEmail
       }
     }
+  }) {
+    id
+    speaker {
+      name
+      email
+    }
   }
+}
 `;
 
 module.exports = async (req, res) => {
   try {
-    const variables = JSON.parse(req.body);
-
-    console.log(variables);
-
-    res.status(201).send(await graphQLClient.request(mutation, variables));
-  } catch ({ status = 500, message }) {
+    res.status(201).send(await graphQLClient.request(mutation, req.body));
+  } catch ({ status = 500, message, ...rest }) {
     res.status(status).json({ status, message });
   }
 };

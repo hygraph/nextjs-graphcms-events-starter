@@ -19,7 +19,8 @@
     "node-fetch": "^2.6.0",
     "postmark": "2.3.4",
     "react": "16.10.2",
-    "react-dom": "16.10.2"
+    "react-dom": "16.10.2",
+    "react-hook-form": "^4.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.3",

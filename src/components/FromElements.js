@@ -1,5 +1,4 @@
 import React from 'react';
-import useFormState from '../hooks/useFormState';
 
 export const FormSection = props => <div className="mb-6" {...props} />;
 
@@ -9,72 +8,44 @@ export const Error = (error, index) => (
   </p>
 );
 
-export const Label = ({ label, id, required }) => (
+export const Label = ({ label, id }) => (
   <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor={id}>
     {label}
-    {required ? ' *' : ''}
   </label>
 );
 
-export const TextInput = ({
-  id,
-  type,
-  placeholder,
-  label,
-  required,
-  errorMessage,
-  updatePayload,
-}) => {
-  const [methods, values, errors] = useFormState({
-    required,
-    errorMessage,
-    updatePayload,
-    id,
-  });
-
+export const TextInput = React.forwardRef((props, ref) => {
+  const { id, type, placeholder, label, errors } = props;
   return (
     <FormSection>
-      {Label({ label, id, required })}
+      {Label({ label, id })}
       <input
         className="appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         id={id}
+        name={id}
         type={type}
         placeholder={placeholder}
-        {...values}
-        {...methods}
+        ref={ref}
       />
-      <React.Fragment>{errors.map(Error)}</React.Fragment>
+      {errors && <Error error={errors.message} />}
     </FormSection>
   );
-};
+});
 
-export const TextArea = ({
-  id,
-  type,
-  placeholder,
-  label,
-  required,
-  errorMessage,
-  updatePayload,
-}) => {
-  const [methods, values, errors] = useFormState({
-    required,
-    errorMessage,
-    updatePayload,
-    id,
-  });
+export const TextArea = React.forwardRef((props, ref) => {
+  const { id, type, placeholder, label, errors } = props;
   return (
     <FormSection>
-      {Label({ label, id, required })}
+      {Label({ label, id })}
       <textarea
+        ref={ref}
         className="appearance-none border rounded w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-56 resize-y"
         id={id}
+        name={id}
         type={type}
         placeholder={placeholder}
-        {...values}
-        {...methods}
       />
-      <React.Fragment>{errors.map(Error)}</React.Fragment>
+      {errors && <Error error={errors.message} />}
     </FormSection>
   );
-};
+});
