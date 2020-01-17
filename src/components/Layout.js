@@ -7,13 +7,13 @@ import Footer from './Footer';
 
 function Layout({ children }) {
   return (
-    <React.Fragment>
+    <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
 
       <main>{children}</main>
 
       <Footer />
-    </React.Fragment>
+    </div>
   );
 }
 

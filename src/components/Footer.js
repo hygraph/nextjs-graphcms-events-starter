@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <div
-      className="text-gray-100 bg-gray-900 py-12 pt-20"
+      className="text-gray-100 bg-gray-900 py-12 pt-20 mt-auto"
       style={{
         clipPath: 'polygon(0% 30%, 100% 0%, 100% 100%, 0% 100%)',
       }}
