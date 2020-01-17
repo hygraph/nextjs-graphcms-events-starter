@@ -75,7 +75,6 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
 };
 
 Home.getInitialProps = async ctx => {
-  console.log(ctx);
   const query = `
   fragment assetInfo on Asset {
     handle
@@ -129,7 +128,7 @@ Home.getInitialProps = async ctx => {
   }
 `;
 
-  const graphQLClient = new GraphQLClient('http://localhost:3000/api/graphql');
+  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
 
   const request = await graphQLClient.request(query);
 

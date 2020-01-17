@@ -128,7 +128,7 @@ EventPage.getInitialProps = async ctx => {
     }
   `;
 
-  const graphQLClient = new GraphQLClient('http://localhost:3000/api/graphql');
+  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
 
   const { event } = await graphQLClient.request(query);
 

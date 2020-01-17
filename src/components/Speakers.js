@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 import Speaker from './Speaker';
 
@@ -16,6 +17,14 @@ function Speakers({ speakers }) {
       ) : (
         <p>Speakers will be announced soon.</p>
       )}
+
+      <div className="inline-flex items-center mt-6">
+        <Link href="/cfp">
+          <a className="bg-purple-600 text-white px-4 py-2 text-lg rounded hover:bg-purple-800">
+            Apply to Speak!
+          </a>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -3,7 +3,6 @@
   "scope": "graphcms",
   "build": {
     "env": {
-      "GATSBY_GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
       "GATSBY_GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
     }
   },

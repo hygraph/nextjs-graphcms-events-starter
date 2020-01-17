@@ -31,6 +31,7 @@ mutation submitCFP(
     }
   }) {
     id
+    title
     speaker {
       name
       email
