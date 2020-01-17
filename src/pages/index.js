@@ -24,11 +24,11 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
           <Link href={next.slug}>
             <a>
               <article>
-                <div className="z-10 relative px-4 self-center w-2/3">
-                  <p className="text-white inline-block font-bold text-sm">
+                <div className="z-10 relative px-4 self-center w-2/3 mb-8">
+                  <p className="text-white inline-block font-bold text-sm mb-4">
                     Up Next
                   </p>
-                  <h1 className="text-6xl font-bold leading-tight text-white">
+                  <h1 className="text-6xl font-bold leading-tight text-white mb-4">
                     {next.title}
                   </h1>
                   <p className="text-xl font-bold pb-3 text-purple-200">
@@ -57,7 +57,12 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
                 <Link href="/[event-slug].js" as={event.slug} key={index}>
                   <a className="w-full md:w-1/2 px-2 mb-10">
                     <article>
-                      <img src={event.image ? event.image.url : ''} />
+                      <div className="shade relative">
+                        <img
+                          src={event.image ? event.image.url : ''}
+                          className="mb-6"
+                        />
+                      </div>
                       <h1 className="font-bold text-gray-800 text-xl mb-2">
                         {event.title}
                       </h1>
@@ -70,6 +75,23 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
         </section>
       </Wrapper>
       <Sponsors sponsors={globalSponsors} />
+      <style jsx>
+        {`
+          .shade::after {
+            content: '';
+            background: rgba(85, 61, 154, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            transition: background 0.25s ease-in;
+          }
+          .shade:hover::after {
+            background: rgba(85, 61, 154, 0.2);
+          }
+        `}
+      </style>
     </React.Fragment>
   );
 };

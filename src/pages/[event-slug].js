@@ -18,7 +18,7 @@ function EventPage({ event, speakers, venue, sponsors, tracks, debug }) {
       >
         <div className="container mx-auto px-6 py-12 lg:py-20">
           <div className="w-2/3">
-            <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            <h1 className="text-white text-4xl md:text-6xl font-bold mb-8 leading-tight">
               {event.title}
             </h1>
             <div
@@ -42,7 +42,7 @@ EventPage.getInitialProps = async ctx => {
       handle
       width
       height
-      url
+      url(transformation: { image: { resize: { width: 1000}}})
     }
   
     fragment venueInfo on Venue {
