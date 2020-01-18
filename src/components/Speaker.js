@@ -4,8 +4,8 @@ import Image from 'graphcms-image';
 function Speaker({ name, headline, photo }, index) {
   return (
     <div className="w-full md:w-1/4 px-6 mb-6" key={index}>
-      <div className="rounded-lg bg-gray-900 w-full overflow-hidden">
-        <Image image={photo} maxWidth={150} />
+      <div className="rounded-lg bg-purple-200 w-full overflow-hidden">
+        <img src={photo.url} />
       </div>
 
       <div className="text-gray-500 flex items-center justify-between pt-3">

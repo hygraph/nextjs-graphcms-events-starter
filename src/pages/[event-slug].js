@@ -42,7 +42,7 @@ EventPage.getInitialProps = async ctx => {
       handle
       width
       height
-      url(transformation: { image: { resize: { width: 1000}}})
+      url
     }
   
     fragment venueInfo on Venue {
