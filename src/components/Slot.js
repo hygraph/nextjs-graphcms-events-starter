@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'graphcms-image';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // filter on __typename
 
@@ -28,7 +30,10 @@ function Slot({ id, start, end, talk, sessionBreak }) {
       ) : sessionBreak ? (
         <div className="flex items-center">
           <div className="w-16 mr-6">
-            <p>break</p>
+            <FontAwesomeIcon
+              icon={faCoffee}
+              className="mr-2 fill-current text-2xl"
+            />
           </div>
 
           <div className="flex-grow">
