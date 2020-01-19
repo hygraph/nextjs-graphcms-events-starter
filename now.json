@@ -3,11 +3,11 @@
   "scope": "graphcms",
   "build": {
     "env": {
-      "GATSBY_GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
+      "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint"
     }
   },
   "env": {
-    "GATSBY_GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
+    "GRAPHCMS_TOKEN": "@demo-graphcms-events-graphcms-token",
     "GRAPHCMS_MUTATION_TOKEN": "@demo-graphcms-events-graphcms-mutation-token",
     "GRAPHCMS_ENDPOINT": "@demo-graphcms-events-graphcms-endpoint",
     "POSTMARK_API_KEY": "@demo-graphcms-events-postmark-api-key",

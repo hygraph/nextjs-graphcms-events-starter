@@ -19,7 +19,7 @@ export default async (req, res, ...args) => {
     uri: process.env.GRAPHCMS_ENDPOINT,
     useGETForQueries: true,
     headers: {
-      Authorization: `Bearer ${process.env.GATSBY_GRAPHCMS_TOKEN}`,
+      Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
     },
     fetch,
   });
