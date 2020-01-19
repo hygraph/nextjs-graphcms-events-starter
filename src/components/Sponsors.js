@@ -23,7 +23,9 @@ function Sponsors({ sponsors, event }) {
       </div>
 
       {sponsors.length ? (
-        <div className="flex flex-wrap -mx-6">{sponsors.map(Sponsor)}</div>
+        <div className="flex flex-wrap align-middle justify-start">
+          {sponsors.map(Sponsor)}
+        </div>
       ) : (
         <p>Sponsors will be announced soon.</p>
       )}

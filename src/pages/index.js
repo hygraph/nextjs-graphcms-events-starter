@@ -15,7 +15,7 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
       <section
         className="bg-cover bg-purple-800 pb-32 pt-8"
         style={{
-          backgroundImage: `linear-gradient(rgba(107, 70, 193,0.85), rgba(107, 70, 193,0.5)), url(${next.image.url})`,
+          backgroundImage: `linear-gradient(rgba(107, 70, 193,0.55), rgba(107, 70, 193,0.5)), url(${next.image.url})`,
           clipPath:
             'polygon(0% 0%, 100% 0%, 100% 85%, 30% 85%, 30% 100%, 0% 85%)',
         }}
@@ -57,16 +57,23 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
                 <Link href="/[event-slug].js" as={event.slug} key={index}>
                   <a className="w-full md:w-1/2 px-2 mb-10">
                     <article>
-                      <div className="shade relative">
-                        <img
-                          src={event.image ? event.image.url : ''}
-                          className="mb-6"
-                        />
-                      </div>
+                      <div
+                        className="relative h-56 mb-4"
+                        style={{
+                          backgroundImage: `linear-gradient(rgba(107, 70, 193,0.85), rgba(107, 70, 193,0.5)), url(${
+                            event.image ? event.image.url : ''
+                          })`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'bottom center',
+                        }}
+                      ></div>
                       <h1 className="font-bold text-gray-800 text-xl mb-2">
                         {event.title}
                       </h1>
-                      <p>{event.venue ? event.venue.name : 'TBD'}</p>
+                      <p className="">
+                        {' '}
+                        {event.venue ? event.venue.name : 'TBD'}
+                      </p>
                     </article>
                   </a>
                 </Link>
@@ -75,23 +82,6 @@ const Home = ({ futureEvents, pastEvents, globalSponsors }) => {
         </section>
       </Wrapper>
       <Sponsors sponsors={globalSponsors} />
-      <style jsx>
-        {`
-          .shade::after {
-            content: '';
-            background: rgba(85, 61, 154, 0.4);
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            transition: background 0.25s ease-in;
-          }
-          .shade:hover::after {
-            background: rgba(85, 61, 154, 0.2);
-          }
-        `}
-      </style>
     </React.Fragment>
   );
 };

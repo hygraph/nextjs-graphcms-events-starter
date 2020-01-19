@@ -3,19 +3,9 @@ import Image from 'graphcms-image';
 
 function Sponsor({ name, url, logo, ...props }, index) {
   return (
-    <div className="w-1/2 md:w-1/6 px-6" key={index}>
-      <a href={url}>
-        {logo && (
-          <Image
-            alt={name}
-            image={logo}
-            maxWidth={150}
-            className=""
-            outerWrapperClassName=""
-          />
-        )}
-      </a>
-    </div>
+    <a key={index} href={url} className="even:mx-8">
+      {logo && <img className="h-32" src={logo.url} />}
+    </a>
   );
 }
 

@@ -23,7 +23,7 @@ function Venue({ name, location, city, street, country, postcode, image }) {
             )}
             {street && (
               <Link href="/">
-                <a className="bg-gray-800 text-white px-2 py-1 rounded-lg hover:bg-purple-800 inline-flex items-center justify-center">
+                <a className="bg-purple-800 text-white px-2 py-1 rounded-lg hover:bg-purple-800 inline-flex items-center justify-center">
                   <svg
                     className="fill-current w-4 mr-3"
                     xmlns="http://www.w3.org/2000/svg"
@@ -40,9 +40,9 @@ function Venue({ name, location, city, street, country, postcode, image }) {
       </div>
 
       <div
-        className="px-6 mb-6 md:mb-0 bg-gray-900 bg-cover"
+        className="px-6 mb-6 md:mb-0 bg-purple-200 bg-cover"
         style={{
-          backgroundImage: `url(${image.url})`,
+          backgroundImage: `linear-gradient(rgba(107, 70, 193,0.85), rgba(107, 70, 193,0.5)), url(${image.url})`,
           height: '450px',
           clipPath: 'polygon(0% 10%, 100% 0%, 100% 100%, 0% 90%)',
         }}
