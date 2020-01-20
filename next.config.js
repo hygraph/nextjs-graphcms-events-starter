@@ -14,7 +14,7 @@ module.exports = phase => {
     URL: (() => {
       if (isDev) return 'http://localhost:3000';
       if (isProd) {
-        return 'https://graphcms-events.now.sh/';
+        return 'https://nextjs-graphcms-events-starter.now.sh/';
       }
       if (isStaging) return 'http://localhost:11639';
     })(),
