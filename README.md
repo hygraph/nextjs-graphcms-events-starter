@@ -2,7 +2,7 @@
 
 > Minimalist conference website built with GraphCMS, NextJs, Now and Postmark.
 
-[Read more](https://graphcms.com/blog/)
+[Read more](https://graphcms.com/blog/managing-speakers-and-talk-submissions-with-the-serverless-stack/)
 
 ## The stack
 
@@ -31,7 +31,7 @@ When putting on an event with presenters, you have two halves to handle. Arrangi
 
 If you wish to extend and work with this example locally, follow the instructions below.
 
-If you'd rather check out a [demo](https://graphcms-events.now.sh) or deploy to your own Now account, you can do that too.
+If you'd rather check out a [demo](https://nextjs-graphcms-events-starter.now.sh) or deploy to your own Now account, you can do that too.
 
 First, you will need accounts at GraphCMS, Postmark and Now.
 
