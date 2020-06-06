@@ -16,7 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@zeit/next-css": "^1.0.1",
     "apollo-link-http": "^1.5.16",
-    "apollo-server-micro": "^2.9.16",
+    "apollo-server-micro": "^2.14.2",
     "dotenv": "8.2.0",
     "graphcms-image": "1.1.0-beta4",
     "graphql-request": "1.8.2",
