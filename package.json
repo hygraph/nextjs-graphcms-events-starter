@@ -21,7 +21,7 @@
     "graphcms-image": "1.1.0-beta4",
     "graphql-request": "1.8.2",
     "graphql-tools": "^4.0.6",
-    "next": "^9.1.7",
+    "next": "^9.5.4",
     "node-fetch": "^2.6.0",
     "postmark": "2.3.4",
     "react": "16.10.2",
