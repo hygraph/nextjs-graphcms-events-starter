@@ -1,6 +1,6 @@
 # GraphCMS Events
 
-> Minimalist conference website built with GraphCMS, NextJs, Now and Postmark.
+> Minimalist conference website built with GraphCMS, Next.js, Now and Postmark.
 
 [Read more](https://graphcms.com/blog/managing-speakers-and-talk-submissions-with-the-serverless-stack/)
 
@@ -9,7 +9,7 @@
 When putting on an event with presenters, you have two halves to handle. Arranging the schedule, and collecting the presenters. There are a number of siloed tools for both, but none that are able to provide a truly "end-all-be-all" solution. So why not build your own?
 
 - **[GraphCMS](https://graphcms.com)**: Manages the speakers, talks, track schedules, events and sponsors.
-- **[Next](https://nextjs.org/)**: Acts as a powerful framework that lets us query for live data and use serverless functions in Now.
+- **[Next.js](https://nextjs.org/)**: Acts as a powerful framework that lets us query for live data and use serverless functions in Now.
 - **[Vercel](https://vercel.com/home)**: A static host that also supports Lambda functions where we handle our submissions and feedback hooks.
 - **[Postmark](https://postmark.com)**: Sending notification emails for confirmation.
 
@@ -17,7 +17,7 @@ When putting on an event with presenters, you have two halves to handle. Arrangi
 
 1. GraphCMS will house our entire content architecture. We will discuss the architecture in further detail at the connected blog post. The rough structure (though not hierarchial) looks like this: Events -> (Sponsors | Tracks -> Time-Slots -> Talks -> Speakers)
 
-2. Next will power our application where we fetch content from GraphCMS (through a GraphQL proxy that authenticates our GraphCMS endpoint, hosted locally in a lambda function).
+2. Next.js will power our application where we fetch content from GraphCMS (through a GraphQL proxy that authenticates our GraphCMS endpoint, hosted locally in a lambda function).
 
 3. The "Submit a Talk" function is handled server-side in a lambda, executed by now. This will create a talk submission that is entered into GraphCMS.
 
@@ -90,7 +90,7 @@ demo-graphcms-events-new-cfp-email
 
 ### 5. Run locally
 
-Once all dependencies and environment variables are satisfied, you can run Next locally to build in development, including the API endpoints with `now`:
+Once all dependencies and environment variables are satisfied, you can run Next.js locally to build in development, including the API endpoints with `now`:
 
 ```bash
 now dev
