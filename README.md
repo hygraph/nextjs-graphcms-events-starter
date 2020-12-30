@@ -1,6 +1,6 @@
 # GraphCMS Events
 
-> Minimalist conference website built with GraphCMS, Next.js, Now and Postmark.
+> Minimalist conference website built with GraphCMS, Next.js, Vercel, and Postmark.
 
 [Read more](https://graphcms.com/blog/managing-speakers-and-talk-submissions-with-the-serverless-stack/)
 
@@ -21,9 +21,9 @@ When putting on an event with presenters, you have two halves to handle. Arrangi
 
 3. The "Submit a Talk" function is handled server-side in a lambda, executed by now. This will create a talk submission that is entered into GraphCMS.
 
-4. GraphCMS will kick off a Webhook on talk creation to another Now hosted endpoint that will send a confirmation email through Postmark to the speaker as well as a notification of a new talk to the organizer of the event.
+4. GraphCMS will kick off a Webhook on talk creation to another Vercel hosted endpoint that will send a confirmation email through Postmark to the speaker as well as a notification of a new talk to the organizer of the event.
 
-5. In the email to the organizer, two links will be exposed where they can approve or reject the submission through endpoints again hosted in Now.
+5. In the email to the organizer, two links will be exposed where they can approve or reject the submission through endpoints again hosted in Vercel.
 
 ⚠️ You need to have an account and API keys for Postmark for this to work.
 
@@ -31,9 +31,9 @@ When putting on an event with presenters, you have two halves to handle. Arrangi
 
 If you wish to extend and work with this example locally, follow the instructions below.
 
-If you'd rather check out a [demo](https://graphcms-events.vercel.app) or deploy to your own Now account, you can do that too.
+If you'd rather check out a [demo](https://graphcms-events.vercel.app) or deploy to your own Vercel account, you can do that too.
 
-First, you will need accounts at GraphCMS, Postmark and Now.
+First, you will need accounts at GraphCMS, Postmark and Vercel.
 
 ### 1. Download and install dependencies
 
@@ -61,10 +61,10 @@ Add the necessary variables to `.env` and `.env.build` files.
 **Deployment URLS**
 Add your own domain for the production version of your application in the `now.config.js` file at line 17.
 
-⚠️ _You'll need to add your own domain for this step, and you will need to deploy to Now first to do that._
+⚠️ _You'll need to add your own domain for this step, and you will need to deploy to Vercel first to do that._
 
 **Secrets**
-Now keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://vercel.com/docs/environment-variables)
+Vercel keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://vercel.com/docs/environment-variables)
 
 You'll need to add the following secrets, which you should already have filled out in your `envs`.
 
@@ -86,12 +86,12 @@ demo-graphcms-events-new-cfp-email
 
 ![Webhooks Image](guide/assets/webhooks.png)
 
-⚠️ _You'll need to add your own domain before the `api` path, and you will need to deploy to Now first to do that._
+⚠️ _You'll need to add your own domain before the `api` path, and you will need to deploy to Vercel first to do that._
 
 ### 5. Run locally
 
-Once all dependencies and environment variables are satisfied, you can run Next.js locally to build in development, including the API endpoints with `now`:
+Once all dependencies and environment variables are satisfied, you can run Next.js locally to build in development, including the API endpoints with `vercel`:
 
 ```bash
-now dev
+vercel dev
 ```
