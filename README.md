@@ -41,7 +41,7 @@ First, you will need accounts at GraphCMS, Postmark and Vercel.
 git clone git@github.com:graphcms/graphcms-events.git
 cd graphcms-events
 yarn # npm install
-cp .env.buld.sample .env.build
+cp .env.build.sample .env.build
 cp .env.sample .env
 ```
 
